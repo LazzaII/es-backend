@@ -37,11 +37,10 @@
     
     //add a student in db
     public function add($student){
-      $sql = "INSERT INTO student (id, name, surname, sidi_code, tax_code) VALUES (:id, :name, :surname :sidi_code, :tax_code);";
+      $sql = "INSERT INTO student (id, name, surname, sidi_code, tax_code) VALUES (:id, :name, :surname, :sidi_code, :tax_code);";
       $stmt = $this->db->prepare($sql);
-      $totId = $this->all();
       $data = [
-        'id' => count($totId) + 1,
+        'id' => $student->_id,
         'name' => $student->_name,
         'surname' => $student->_surname,
         'sidi_code' => $student->_sidiCode,
@@ -61,15 +60,15 @@
     }
 
     //Updata information of a student
-    public function update($employee){
+    public function update($student){
       $sql = "UPDATE student SET name = :name, surname = :surname, sidi_code = :sidi_code, tax_code = :tax_code WHERE id = :id;";
       $stmt = $this->db->prepare($sql);
       $data = [
-        'id' => $employee->_id,
-        'name' => $employee->_name,
-        'surname' => $employee->_surname,
-        'sidi_code' => $employee->_sidiCode,
-        'tax_code' => $employee->_taxCode
+        'id' => $student->_id,
+        'name' => $student->_name,
+        'surname' => $student->_surname,
+        'sidi_code' => $student->_sidiCode,
+        'tax_code' => $student->_taxCode
       ];
       $stmt->execute($data);
     }

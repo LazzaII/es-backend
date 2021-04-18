@@ -9,10 +9,10 @@
 </head>
 <body>
     <form action="student.php" method="GET">
-        <label for="text">GET DI TUTTI GLI STUDENTI</label>
+        <label for="text_get_all">GET DI TUTTI GLI STUDENTI</label>
         <input type="submit" value="PROVA GET (Tutti)"><br>
         
-        <label for="text">GET DI UNO STUDENTE</label>
+        <label for="text_get">GET DI UNO STUDENTE</label>
         <select name="id">
             <option selected disabled hidden value="">Id Studente</option>
             <?php
@@ -33,5 +33,18 @@
         </select>
         <input type="submit" value="GET DI UNO STUDENTE">
     </form> 
+    <br><br>
+    <form action="student.php" method="POST">
+        <legend>Inserimento dati studente</legend>
+        <label for="text_name">Inserisci il nome</label>
+        <input type="name" name="name" required><br>
+        <label for="text_surname">Inserisci il cognome</label>
+        <input type="surname" name="surname" required><br>
+        <label for="text_sisi_cod">Inserisci il sisi_cod</label>
+        <input type="sisi_cod" name="sidi_cod" required><br>
+        <label for="text_tax_cod">Inserisci il tax_cod</label>
+        <input type="tax_cod" name="tax_cod" required><br>
+        <input type="submit" value="Aggiorna dati">
+    </form>
 </body>
 </html>

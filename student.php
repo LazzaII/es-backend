@@ -19,29 +19,21 @@
       echo($js_encode);
       break;
 
-    case 'POST': //Post method used to add a student in the db
-      $body = file_get_contents("php://input");
-      $decodeBody = json_decode($body, true);
+    case 'POST': //Post method used to add a student in the db   
+      //to get the last id for the new Student
+      $numStudent = count($student->all());
+      $result = $student->all();
 
-      //Only to get the last id
-      /* $db = new DBConnection;
-      $db = $db->returnConnection();
-      $sql = "SELECT id FROM student ORDER BY id DESC LIMIT 1;";
-      $stmt = $db->prepare($sql);
-      $stmt->execute();
-      $result = $stmt->fetchAll(\PDO::FETCH_ASSOC); */
-
-      /* $student->_id = $result[0]['id']+1;
-      $student->_name = $js_decoded["_name"];
-      $student->_surname = $js_decoded["_surname"];
-      $student->_sidiCode = $js_decoded["_sidiCode"];
-      $student->_taxCode = $js_decoded["_taxCode"];
-
-      $student->add($student); */
+      $student->_id = $result[$numStudent-1]['id']+1;
+      $student->_name = $_POST["name"];
+      $student->_surname = $_POST["surname"];
+      $student->_sidiCode = $_POST["sidi_cod"];
+      $student->_taxCode = $_POST["tax_cod"];
+      $student->add($student);
+      echo "Studente inserito";
       break;
 
     case 'DELETE': //Delete method used to delete a student from db using ID
-      
       $substringedURI = explode('/', $_SERVER["REQUEST_URI"]); //To get the id of the student  
       if(count($substringedURI) != 0)
       {
@@ -52,19 +44,22 @@
       break;
 
     case 'PUT': //Put method used to update information of a student
-     
-      $id = substr($_SERVER["REQUEST_URI"], -1); //To get the id of the student  
-      $body = file_get_contents("php://input");
-      $decodeBody = json_decode($body, true);
+      $substringedURI = explode('/', $_SERVER["REQUEST_URI"]); //To get the id of the student  
+      if(count($substringedURI) != 0)
+      {
+        $body = file_get_contents("php://input");
+        $decodeBody = json_decode($body, true);
 
-      $student->_id = $id;
-      $student->_name = $js_decoded["_name"];
-      $student->_surname = $js_decoded["_surname"];
-      $student->_sidiCode = $js_decoded["_sidiCode"];
-      $student->_taxCode = $js_decoded["_taxCode"];
-
-      $student->update($student);
-
+        $student->_id = $substringedURI[count($substringedURI)-1];
+        $student->_name = $js_decoded["_name"];
+        $student->_surname = $js_decoded["_surname"];
+        $student->_sidiCode = $js_decoded["_sidiCode"];
+        $student->_taxCode = $js_decoded["_taxCode"];
+  
+        $student->update($student);
+        echo "Dati studente aggiornati";
+      }
+      else echo "ID non inserito";
       break;
 
     default: 
