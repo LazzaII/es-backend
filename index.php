@@ -44,7 +44,7 @@
         <input type="sisi_cod" name="sidi_cod" required><br>
         <label for="text_tax_cod">Inserisci il tax_cod</label>
         <input type="tax_cod" name="tax_cod" required><br>
-        <input type="submit" value="Aggiorna dati">
+        <input type="submit" value="Inserisci dati">
     </form>
 </body>
 </html>

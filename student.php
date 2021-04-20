@@ -47,14 +47,14 @@
       $substringedURI = explode('/', $_SERVER["REQUEST_URI"]); //To get the id of the student  
       if(count($substringedURI) != 0)
       {
-        $body = file_get_contents("php://input");
+        $body = file_get_contents("php://input"); //get the body
         $decodeBody = json_decode($body, true);
 
         $student->_id = $substringedURI[count($substringedURI)-1];
-        $student->_name = $js_decoded["_name"];
-        $student->_surname = $js_decoded["_surname"];
-        $student->_sidiCode = $js_decoded["_sidiCode"];
-        $student->_taxCode = $js_decoded["_taxCode"];
+        $student->_name = $decodeBody["_name"];
+        $student->_surname = $decodeBody["_surname"];
+        $student->_sidiCode = $decodeBody["_sidiCode"];
+        $student->_taxCode = $decodeBody["_taxCode"];
   
         $student->update($student);
         echo "Dati studente aggiornati";
