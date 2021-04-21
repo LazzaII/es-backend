@@ -1,6 +1,9 @@
 <!-- ESEMPIO curl --header "Content-Type: application/json" --request POST --data '{"_name":"Ciccio", "_surname":"Benve"}' http://localhost:8080  -->
+<!-- ESEMPIO curl --header "Content-Type: application/json" --request PUT --data '{"_name":"Ciccio", "_surname":"Benve", "_sidiCode":"sidiCode", "taxCode": "taxCode"}' http://localhost:8080/student.php/1699  -->
+<!-- curl -H "Content-Type: application/json" -X PUT http://localhost:8080/student.php/1699 -d '{"_name":"Ciccio", "_surname":"Benve", "_sidiCode":"sidiCode", "taxCode": "taxCode"}'  -->
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

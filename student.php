@@ -20,11 +20,6 @@
       break;
 
     case 'POST': //Post method used to add a student in the db   
-      //to get the last id for the new Student
-      $numStudent = count($student->all());
-      $result = $student->all();
-
-      $student->_id = $result[$numStudent-1]['id']+1;
       $student->_name = $_POST["name"];
       $student->_surname = $_POST["surname"];
       $student->_sidiCode = $_POST["sidi_cod"];
@@ -48,13 +43,13 @@
       if(count($substringedURI) != 0)
       {
         $body = file_get_contents("php://input"); //get the body
-        $decodeBody = json_decode($body, true);
+        $decodeBody = json_decode($body);
 
         $student->_id = $substringedURI[count($substringedURI)-1];
-        $student->_name = $decodeBody["_name"];
-        $student->_surname = $decodeBody["_surname"];
-        $student->_sidiCode = $decodeBody["_sidiCode"];
-        $student->_taxCode = $decodeBody["_taxCode"];
+        $student->_name = $decodeBody->name;
+        $student->_surname = $decodeBody->surname;
+        $student->_sidiCode = $decodeBody->sidiCode;
+        $student->_taxCode = $decodeBody->taxCode;
   
         $student->update($student);
         echo "Dati studente aggiornati";

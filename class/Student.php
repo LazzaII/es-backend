@@ -37,10 +37,10 @@
     
     //add a student in db
     public function add($student){
-      $sql = "INSERT INTO student (id, name, surname, sidi_code, tax_code) VALUES (:id, :name, :surname, :sidi_code, :tax_code);";
+      $sql = "INSERT INTO student (name, surname, sidi_code, tax_code) VALUES (:name, :surname, :sidi_code, :tax_code);";
       $stmt = $this->db->prepare($sql);
-      $data = [
-        'id' => $student->_id,
+      $data = [/* 
+        'id' => $student->_id, */
         'name' => $student->_name,
         'surname' => $student->_surname,
         'sidi_code' => $student->_sidiCode,
